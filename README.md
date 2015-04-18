@@ -11,7 +11,7 @@ The rules are simple:
  
 We have collected data from over 85,000 URF mode games, so you're sure to get a unique match every time you play.
 
-PS: URF Version is the first and probably only version of "Who's That Champion?" ever. There will never and can never be a version better than URF.
+PS: URF Version is the first version of "Who's That Champion?". No other versions exist. Sorry?
 
 ### Demo
 The web app can be found here:
