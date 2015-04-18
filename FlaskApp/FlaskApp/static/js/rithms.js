@@ -193,22 +193,22 @@ function generateTableRow(skill_slot, level, response) {
 	var diff = 18 - level;
 	var id = ""
 	switch(skill_slot) {
-		case 1:
-			$("#q-row").append('<td>Q</td>');
-			id = "#q-row"
-			break;
-		case 2:
-			$("#w-row").append('<td>W</td>');
-			id = "#w-row"
-			break;
-		case 3:
-			$("#e-row").append('<td>E</td>');
-			id = "#e-row"
-			break;
-		case 4:
-			$("#r-row").append('<td>R</td>');
-			id = "#r-row"
-			break;
+	case 1:
+		$("#q-row").append('<td style="background-color: rgba(1,1,1,.87)">Q</td>');
+		id = "#q-row"
+		break;
+	case 2:
+		$("#w-row").append('<td style="background-color: rgba(1,1,1,.87)">W</td>');
+		id = "#w-row"
+		break;
+	case 3:
+		$("#e-row").append('<td style="background-color: rgba(1,1,1,.87)">E</td>');
+		id = "#e-row"
+		break;
+	case 4:
+		$("#r-row").append('<td style="background-color: rgba(1,1,1,.87)">R</td>');
+		id = "#r-row"
+		break;
 	}
 	for(i = 0; i < level; i++) {
 		if(response.result['event_data']['skill_level_up'][i] == skill_slot) {
