@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ url_for('static', filename ='favicon.ico') }}">
+
+    <title>Who's That Champion?</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename ='css/bootstrap.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename ='css/cover.css') }}" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+                  window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||
+                    {};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+                  </script>
+
+  </head>
+
+  <body style="background: url({{ url_for('static', filename ='images/whosthatchampion.png')}}) no-repeat center center fixed; background-size:cover">
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+        
+          <div class="inner cover">
+            <h1 class="cover-heading"><img style="width: 100%" src='{{ url_for('static', filename = 'images/logo.png' )}}'/></h1>
+            <p class="lead" style="font-size: 30px">The League of Legends Guessing Game</p>
+            <p class="lead">
+              <a href="urf/" class="btn btn-lg btn-default" style="background-color:red; color: white; -webkit-text-stroke: 2px black; width: 200px; height: 85px; font-size:50px;">PLAY</a>
+            </p>
+          </div>
+          <div class="mastfoot">
+            <div class="inner">
+            </div>
+            <p style="color: white">Created By: <a style="color: white" href="http://twitter.com/itsRithms">Rithms</a></p>
+            <div><a class="twitter-hashtag-button"
+                href="https://twitter.com/intent/tweet?button_hashtag=WhosThatChampion"
+                data-url="https://whosthatchampion.com"
+                data-text="I just played &quot;Who's That Champion?&quot; at"
+                data-hashtags="WhosThatChampion, LeagueOfLegends"
+                data-count="none">Tweet #WhosThatChampion</a>
+                </div>
+            <p style="color:rgba(225,225,225,.8); font-size: 10px">"Who's That Champion?" isn’t endorsed by Riot Games and doesn’t reflect the views or opinions 
+of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends 
+and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ url_for('static', filename ='js/bootstrap.min.js') }}"></script>
+  </body>
+</html>
