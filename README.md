@@ -15,7 +15,7 @@ PS: URF Version is the first and probably only version of "Who's That Champion?"
 
 ### Demo
 The web app can be found here:
-https://whosthatchampion.com
+http://whosthatchampion.com
 
 Enjoy!
 
