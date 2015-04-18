@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ url_for('static', filename ='favicon.ico') }}">
+
+    <title>Who's That Champion?</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename ='css/bootstrap.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename ='css/cover.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename ='css/rithms.css') }}" rel="stylesheet">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="{{ url_for('static', filename ='js/rithms.js') }}"></script>
+    <script>
+window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+</script>
+  </head>
+ 
+  <body style="background: url({{ url_for('static', filename ='images/cover.png')}}) no-repeat center center fixed; background-size:cover">
+
+        <div class="container">
+        		<div class="row" style="padding-top:20px; font-size: 30px;">
+        			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        				<a href="/"><img style="width: 75%" src='{{ url_for('static', filename = 'images/logo.png' )}}'/></a>
+        			</div>
+        			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-top: 10px">
+        				<p style="display: inline">Streak: <span id="streak">{{session['streak']}}</span></p> <a style="display:inline" class="twitter-share-button"
+                href="https://twitter.com/share"
+                data-count="none"
+                data-url="https://whosthatchampion.com"
+                data-text="I just went on a win streak playing &quot;Who's That Champion?&quot; at"
+                data-hashtags="LeagueOfLegends, WhosThatChampion">
+                Tweet
+                </a>
+        			</div>
+        		</div>
+        		<br>
+                <div class="row">
+	                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" height: 5%; background-color: rgba(0, 0, 225, .15); border-top-left-radius: 5px; border-top-right-radius: 5px; padding-bottom: 15px; border-right-width: 2px; border-left-width: 2px; border-top-width: 2px; border-bottom-width: 1px; border-style: solid; border-color:rgba(50, 50, 50, 1)">
+	                  <div style="margin-top:15px; margin-bottom:20px; font-size: 25px;" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+	                  	<img style="display: inline-block; width: 15px; margin-top: -5px" src='{{ url_for('static', filename = 'images/misc/scoreboardicon_gem_100.png' )}}'/> <p style="display: inline">Blue Team</p>
+	                  </div>
+	                  <div id="blue-team" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+	                    {% for participantId, full in data['champion_full_data']['Team1'] %}
+	                    	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+	                    		<input onClick="changeChampIcon(this.src, {{participantId}}, 1)" type="image" src="{{ url_for('static', filename = 'images/champion/' + full)}}" class="champ-select img-rounded" id="{{participantId}}" value="{{participantId}}" style="border-width: 1px; border-style: solid; border-color:rgba(0, 0, 225, .5); width:100px;"/>
+	                    	</div>
+	                    {% endfor %}
+	                  </div>
+	              </div>
+              </div>
+                <div class="row">
+	                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background-color: rgba(225, 0, 0, .15); padding-bottom: 15px; border-right-width: 2px; border-left-width: 2px; border-top-width: 1px; border-bottom-width: 2px; border-style: solid; border-color:rgba(50, 50, 50, 1)">
+	                  <div style="margin-top:15px; margin-bottom:20px; font-size: 25px;" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+	                  	<img style="display: inline-block; width: 15px; margin-top: -5px" src='{{ url_for('static', filename = 'images/misc/scoreboardicon_gem_200.png' )}}'/> <p style="display: inline">Red Team</p>
+	                  </div>
+	                  <div id="red-team" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+	                    {% for participantId, full in data['champion_full_data']['Team2'] %}
+	                    	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+	                    		<input onClick="changeChampIcon(this.src, {{participantId}}, 2)" type="image" src="{{ url_for('static', filename = 'images/champion/' + full)}}" class="champ-select img-rounded" id="{{participantId}}" value="{{participantId}}" style="border-width: 1px; border-style: solid; border-color:rgba(225, 0, 0, .5); width:100px;"/>
+	                    	</div>
+	                    {% endfor %}
+	                  </div>
+	                 </div>
+                </div>
+                <input id="guess" style="color:black" type="hidden" size="5" name="a">
+                <div class="row">
+                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background-color: rgba(50, 50, 50, .2); border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; padding-top: 20px; border-right-width: 2px; border-left-width: 2px; border-top-width: 1px; border-bottom-width: 1px; border-style: solid; border-color:rgba(50, 50, 50, 1)">
+		                <div id="match-details" class="row" style="padding-bottom:20px">
+			                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+
+			                	<div style="display: table-row; border-radius: 10px; height: 100px">
+
+			                		<!--Victory tag-->
+			                		<div id="winner" style="display: table-cell; vertical-align: middle; border-top-left-radius: 5px; border-bottom-left-radius: 5px; 
+			                		{% if data['stats']['winner'] %}
+			                					background-color:green;
+			                				{% else %}
+			                					background-color:red;
+			                				{% endif %}
+			                		height: 50px; width: 5px; padding: 5px">
+				                	</div>
+
+				                	<!--Champ Icon-->	
+				                	<div class="grad" style="display: table-cell; vertical-align: middle; height: 50px; width: 50px; padding: 5px; padding-left: 10px">
+				                		<img src="{{url_for('static', filename = 'images/champion/Random.png')}}" id="champ-icon" class="img-rounded" style="border-width: 3px; border-style: solid; border-color:gray"/>
+				                	</div>
+
+				                	<!--Summoner Spells-->
+				                	<div class="grad" style="display: table-cell; vertical-align: middle; height: 50px; width: 50px; padding: 5px">
+				                		<div style="padding-bottom: 5px">
+				                			<div>
+				                				<img id="spell1" src="{{url_for('static', filename = 'images/spell/' + data['spell1']['full'])}}" class="img-rounded"/>
+				                			</div>
+				                		</div>
+				                		<div>
+				                			<div>
+				                				<img id="spell2" src="{{url_for('static', filename = 'images/spell/' + data['spell2']['full'])}}" class="img-rounded"/>
+				                			</div>
+				                		</div>
+				                	</div>
+
+				                	<!--Description-->
+				                	<div class="grad" style="display: table-cell; vertical-align: middle; height: 50px; width: 300px; padding: 0px 2px 2px 15px; text-align:left">
+			                			<div style="font-size:25px">
+			                				{% if data['stats']['winner'] %}
+			                					<p id="win-cond" style="color:green">Victory</p>
+			                				{% else %}
+			                					<p id="win-cond" style="color:red">2nd Place</p>
+			                				{% endif %}
+			                			</div>
+
+			                			<div style="font-size:18px">
+			                				<p style="color:black">Ultra Rapid Fire</p>
+			                			</div>
+
+			                			<div style="font-size:18px">
+			                				<p style="color:black">Summoner's Rift</p>
+			                			</div>
+				                	</div>
+
+				                	<!--Item-->
+				                	<div class="grad" style="display: table-cell; vertical-align: middle; height: 50px; width: 50px; padding: 5px">
+				                		<div style="padding-bottom: 5px">
+				                			<div>
+				                				<img id="item0" src="{{url_for('static', filename = 'images/item/' + data['item0']['full'])}}" class="img-rounded"/>
+				                			</div>
+				                		</div>
+				                		<div>
+				                			<div>
+				                				<img id="item3" src="{{url_for('static', filename = 'images/item/' + data['item3']['full'])}}" class="img-rounded"/>
+				                			</div>
+				                		</div>
+				                	</div>
+
+				                	<div class="grad" style="display: table-cell; vertical-align: middle; height: 50px; width: 50px; padding: 5px; padding-left: 10px">
+				                		<div style="padding-bottom: 5px">
+				                			<div>
+				                				<img id="item1" src="{{url_for('static', filename = 'images/item/' + data['item1']['full'])}}" class="img-rounded"/>
+				                			</div>
+				                		</div>
+				                		<div>
+				                			<div>
+				                				<img id="item4" src="{{url_for('static', filename = 'images/item/' + data['item4']['full'])}}" class="img-rounded"/>
+				                			</div>
+				                		</div>
+				                	</div>
+
+				                	<div class="grad" style="display: table-cell; vertical-align: middle; height: 50px; width: 50px; padding: 5px; padding-left: 10px">
+				                		<div style="padding-bottom: 5px">
+				                			<div>
+				                				<img id="item2" src="{{url_for('static', filename = 'images/item/' + data['item2']['full'])}}" class="img-rounded"/>
+				                			</div>
+				                		</div>
+				                		<div>
+				                			<div>
+				                				<img id="item5" src="{{url_for('static', filename = 'images/item/' + data['item5']['full'])}}" class="img-rounded"/>
+				                			</div>
+				                		</div>
+				                	</div>
+
+
+				                	<div class="grad" style="display: table-cell; vertical-align: middle; height: 50px; width: 50px; padding: 5px">
+				                		<img id="item6" src="{{url_for('static', filename = 'images/item/' + data['item6']['full'])}}" class="img-rounded"/>
+				                	</div>
+
+
+				                	<div class="grad" style="display: table-cell; vertical-align: middle; height: 50px; width: 300px; padding: 2px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+			                			<div style="font-size:25px">
+			                				<p id="kd" style="color:black; display:inline">{{data['stats']['kills']}}/{{data['stats']['deaths']}}/{{data['stats']['assists']}}</p>
+
+							                <span data-placement="top" data-toggle="tooltip" title="View Champion Kills Map">
+											    <a href="#myModal" role="button" data-toggle="modal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" style="color: black; font-size: 15px"></span></a>
+											</span>
+
+							                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							                  <div class="modal-dialog">
+							                    <div class="modal-content">
+							                      <div class="modal-header">
+							                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							                        <h4 class="modal-title" id="myModalLabel" style="color:black">Champion Kill Event Map</h4>
+							                      </div>
+							                      <div id ="map" class="modal-body" style="text-align: center">
+							                        <script>loadMap({{data['event_data']['champ_kills']}})</script>
+							                      </div>
+							                      <div class="modal-footer">
+							                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							                      </div>
+							                    </div>
+							                  </div>
+							                </div> 
+				                		</div>
+
+										<!-- How To Play -->
+											<div class="modal fade" id="instructions-modal" tabindex="-1" role="dialog" aria-labelledby="instructions-model-label" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											        <h4 class="modal-title" style="color:black">How To Play</h4>
+											      </div>
+											      <div style="color:black; text-align: left" class="modal-body">
+											      	<h3>Details:</h3>
+
+											      	<p>1.) Guess which champion the match details belong to.</p>
+
+											      	<p>2.) Brag to your friends about your streak.</p>
+
+											      	<p>3.) Refer to #1.</p>
+
+											      	</p>
+											      	<p style="padding-top:15px">~Good Luck!~</p>
+
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											      </div>
+											    </div>
+											  </div>
+											</div>
+
+											<!-- How To Play -->
+											<div class="modal fade" id="faq-modal" tabindex="-1" role="dialog" aria-labelledby="faq-model-label" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											        <h4 class="modal-title" style="color:black">F.A.Q.</h4>
+											      </div>
+											      <div style="color:black; text-align: left" class="modal-body">
+											      	<h3 style="color:black">What is this?</h3> 
+											      	<p><span style="color: red">WhosThatChampion.com</span> is a web app created by <a style="color:blue" href="http://twitter.com/itsRithms">Rithms</a> as a submission for the first Riot Games API Challenge. The goal of the challenge was to create a piece of software that utilizes Ultra Rapid Fire (U.R.F.) game mode data provided by the <a style="color:blue" href="https://developer.riotgames.com">Riot Games API</a>.</p>
+
+											      	<h3 style="color:black">About</h3>
+											      	<p><span style="color: red">WhosThatChampion.com</span> was inspired by the popular animated TV series Pokemon, more specifically the commercial segment "Who's that Pokemon?", in which a silhouette of a pokemon is shown, and viewers have to guess which Pokemon it is during the commercial break. 
+											      	</p>
+											      	<p>Although the initial idea for the web app wasn't originally based off Pokemon, it popped into my head while working on the project, I saw an opportunity to integrate the two, and I just went with it.</p>
+											      	<h3 style="color:black">Details</h3>
+											      	<p>
+											      	For those interested, details about the full stack used to create this project and more can be found on my <a style="color:blue" href="http://github.com/rithms">GitHub.</a>
+											      	</p>
+
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											      </div>
+											    </div>
+											  </div>
+											</div>
+
+				                		<div style="font-size:15px">
+			                				<img src="{{url_for('static', filename = 'images/misc/gold.png')}}" class="img-rounded"/><p id="gold-earned" style="display: inline; color:black">{{data['formatted_gold']}}</p>    
+			                				<img src="{{url_for('static', filename = 'images/misc/minion.png')}}"class="img-rounded"/><p id="creep-score" style="display: inline; color:black">{{data['stats']['minionsKilled'] + data['stats']['neutralMinionsKilled']}}</p>
+				                		</div>
+				                		<div id="match-btn" class="btn-group btn-group-sm" role="group" style="padding-top: 15px;">
+				                			<form class="form" action="" method="post" role="form">
+				            					<input id="final-answer-btn" type="submit" class="btn btn-primary final-answer" value="Final Answer">
+				            					<input id="next-btn" type="submit" class="btn btn-primary next" value="Next" style="display:none">
+				            					<input id="restart-btn" type="submit" class="btn btn-primary restart" value="Play Again" style="display:none">
+			            					</form>
+				                		</div>
+			                		</div>
+			                	</div>
+				            </div>
+			            </div>
+			            <div id="correct-alert" class="alert alert-success" role="alert" style="display: none"><span class="sr-only">Close</span></button><strong>Correct!</strong> Click next to continue.</div>
+		                <div id="wrong-alert" class="alert alert-danger" role="alert" style="display: none"><span class="sr-only">Close</span></button><strong>Wrong! </strong><span id="incorrect-msg">Streak has ended.</span></div>
+			            <div class="row">
+			            	<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+				            	<table id="skill-table" class="table table-bordered">
+				            		<thead>
+				            			<tr>
+				            				<th style="text-align: center; background-color: #000000">Skill</th>
+				            				{% for i in range(1, 19) %}
+				            				<th style="text-align: center; background-color: rgba(1,1,1,.87)">{{i}}</th>
+				            				{% endfor %}
+				            			</tr>
+				            		</thead>
+				            		<tbody>
+				            		<!-- Probably should have structured this data better, owell, generating table by rows ftw #yolo -->
+				            			<tr id="q-row" style="background-color: #212121">
+				            				{% set diff = 18 -  data['event_data']['skill_level_up']|length %}
+				            				<td style="background-color: rgba(1,1,1,.87)">Q</td>
+				            				{% for i in range(data['event_data']['skill_level_up']|length)%}
+				            					{% if data['event_data']['skill_level_up'][i]  == 1 %}
+				            						<td><img src="{{url_for('static', filename = 'images/misc/circle.png')}}"class="img-rounded"/></td>
+				            					{% else %}
+				            						<td></td>
+				            					{% endif %}
+				            				{% endfor %}
+				            				{% for i in range(diff) %}
+				            					<td></td>
+				            				{% endfor %}
+				            			</tr>
+				            			<tr id="w-row" style="background-color: #323232">
+				            				<td style="background-color: rgba(1,1,1,.87)">W</td>
+				            				{% for i in range(data['event_data']['skill_level_up']|length)%}
+				            					{% if data['event_data']['skill_level_up'][i]  == 2 %}
+				            						<td><img src="{{url_for('static', filename = 'images/misc/circle.png')}}"class="img-rounded"/></td>
+				            					{% else %}
+				            						<td></td>
+				            					{% endif %}
+				            				{% endfor %}
+				            				{% for i in range(diff) %}
+				            					<td></td>
+				            				{% endfor %}
+				            			</tr>
+				            			<tr id="e-row" style="background-color: #212121">
+				            				<td style="background-color: rgba(1,1,1,.87)">E</td>
+				            				{% for i in range(data['event_data']['skill_level_up']|length)%}
+				            					{% if data['event_data']['skill_level_up'][i]  == 3 %}
+				            						<td><img src="{{url_for('static', filename = 'images/misc/circle.png')}}"class="img-rounded"/></td>
+				            					{% else %}
+				            						<td></td>
+				            					{% endif %}
+				            				{% endfor %}
+				            				{% for i in range(diff) %}
+				            					<td></td>
+				            				{% endfor %}
+				            			</tr>
+				            			<tr id="r-row" style="background-color: #323232">
+				            				<td style="background-color: rgba(1,1,1,.87)">R</td>
+				            				{% for i in range(data['event_data']['skill_level_up']|length)%}
+				            					{% if data['event_data']['skill_level_up'][i]  == 4 %}
+				            						<td><img src="{{url_for('static', filename = 'images/misc/circle.png')}}"class="img-rounded"/></td>
+				            					{% else %}
+				            						<td></td>
+				            					{% endif %}
+				            				{% endfor %}
+				            				{% for i in range(diff) %}
+				            					<td></td>
+				            				{% endfor %}
+				            			</tr>
+				            		</tbody>
+				            	</table>
+			            	</div>
+			            </div>
+	           		</div>
+	           </div>    
+
+        	</div>
+
+          <div style="padding-top:15px" class="row">
+            <div style="color:gray" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            	<p>| <a style="text-decoration: none" href="http://github.com/rithms">Source Code</a> | <a style="text-decoration: none" href="#faq-modal" data-toggle="modal">FAQ</a> | <a style="text-decoration: none" href="#instructions-modal" data-toggle="modal">How To Play</a> | </p>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ url_for('static', filename ='js/bootstrap.min.js') }}"></script>
+  </body>
+</html>

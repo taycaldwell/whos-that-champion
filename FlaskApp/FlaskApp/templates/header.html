@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ url_for('static', filename ='favicon.ico') }}">
+
+    <title>URF</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename ='css/bootstrap.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename ='css/cover.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename ='css/rithms.css') }}" rel="stylesheet">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="{{ url_for('static', filename ='js/rithms.js') }}"></script>
+  </head>
+ 
+  <body style="background: url({{ url_for('static', filename ='images/cover.png')}}) no-repeat center center fixed; background-size:cover">
+
+        <div class="container">
+        		<div class="row" style="padding-top:30px; font-size: 30px;">
+        			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        				<img style="width: 75%" src='{{ url_for('static', filename = 'images/logo.png' )}}'/>
+        			</div>
+        		</div>
+
+        		<div class="row">
+	                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:300px; background-color: rgba(50, 50, 50, .15); border-radius: 5px; padding-bottom: 15px; border-width: 2px; border-style: solid; border-color:rgba(50, 50, 50, 1)">
+	                {% block body %}{% endblock %}
+	                  
+	              </div>
+              </div>
+        		
+
+      	</div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ url_for('static', filename ='js/bootstrap.min.js') }}"></script>
+  </body>
+</html>
