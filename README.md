@@ -38,16 +38,16 @@ Enjoy!
 ### Backend
 
 A [matchId daemon](https://github.com/rithms/whos-that-champion/blob/master/FlaskApp/FlaskApp/daemon/match_ids_d.py) was created to fetch matchIds every time a new batch was available. It ran as a long running process until URF mode was 
-made unavailable. Each matchId from a batch was then stored as a document in a matchIds collection in the database.
+made unavailable. Each matchId from a batch was stored as a document in a matchIds collection in the database.
 
-A [match details daemon](https://github.com/rithms/whos-that-champion/blob/master/FlaskApp/FlaskApp/daemon/match_details_d.py) was created to retrieve the match details of every matchId found in the database via the Riot Games API. Only the necessary match
-data needed for the web app was parsed from the data returned from the Riot Games API. The parsed data was then made into a match document, and stored in the
+A [match details daemon](https://github.com/rithms/whos-that-champion/blob/master/FlaskApp/FlaskApp/daemon/match_details_d.py) was created to retrieve the match details of every matchId found in the database via the Riot Games API. The necessary match
+data needed for the web app was parsed from the data returned from the Riot Games API and made into a document. This document was then stored in the
 matches collection in the database.
 
-A [static data script](https://github.com/rithms/whos-that-champion/blob/master/FlaskApp/FlaskApp/scripts/static_data.py) was created and run once. The script retrieved static data for champions, spells, and items via the Riot API. The json for the champion, spell, and
+A [static data script](https://github.com/rithms/whos-that-champion/blob/master/FlaskApp/FlaskApp/scripts/static_data.py) was created and run one time. The script retrieved static data for champions, spells, and items via the Riot API. The json for the champion, spell, and
 item data was stored directly in the database as documents to their respective collections. Namely, the champions, items, and spells collections of the database.
 
-Now that URF is over, none of these scripts need to be run.
+Now that URF is over, none of these scripts need to be run, as all data is up to date in relation to the stored matches.
 
 ### Data Model
 

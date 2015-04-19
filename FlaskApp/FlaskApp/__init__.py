@@ -82,7 +82,7 @@ def example_spell():
 	return Response(json_util.dumps(spell), mimetype='application/json')
 
 @app.route('/example_item_document/')
-def example_champion():
+def example_item():
 	item = items.find_one()
 	return Response(json_util.dumps(item), mimetype='application/json')
 
