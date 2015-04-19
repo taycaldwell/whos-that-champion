@@ -11,8 +11,12 @@ client = MongoClient()
 db = client.database
 matchIds = db.match_ids
 matches = db.matches
+champions = db.champions
+spells = db.spells
+items = db.items
 
 key = getApiKey()
+app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
 
 @app.route('/')
 def homepage():
@@ -45,6 +49,7 @@ def reset_streak():
 
 @app.route('/next_level/', methods=['POST'])
 def next_level():
+	# Similar to initial urf route
 	data = get_match()
 	return Response(json_util.dumps({'result' : data}), mimetype='application/json')
 
@@ -55,6 +60,31 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template('500.html'), 500
+
+@app.route('/example_match_document/')
+def example_match():
+	match = matches.find_one()
+	return Response(json_util.dumps(match), mimetype='application/json')
+
+@app.route('/example_matchId_document/')
+def example_matchId():
+	matchId = matchIds.find_one()
+	return Response(json_util.dumps(matchId), mimetype='application/json')
+
+@app.route('/example_champion_document/')
+def example_champion():
+	champ = champions.find_one()
+	return Response(json_util.dumps(champ), mimetype='application/json')
+
+@app.route('/example_spell_document/')
+def example_spell():
+	spell = spells.find_one()
+	return Response(json_util.dumps(spell), mimetype='application/json')
+
+@app.route('/example_item_document/')
+def example_champion():
+	item = items.find_one()
+	return Response(json_util.dumps(item), mimetype='application/json')
 
 def get_match():
 	data = matches.find_one({'id': randint(1,matches.count())})

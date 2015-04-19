@@ -35,6 +35,47 @@ Enjoy!
 * [Riot Games API](https://developer.riotgames.com/) - League of Legends game data
 * [Twitter API](https://dev.twitter.com/web/overview) - Tweet buttons, yo
 
+### Backend
+
+A [matchId daemon](https://github.com/rithms/whos-that-champion/blob/master/FlaskApp/FlaskApp/daemon/match_ids_d.py) was created to fetch matchIds every time a new batch was available. It ran as a long running process until URF mode was 
+made unavailable. Each matchId from a batch was then stored as a document in a matchIds collection in the database.
+
+A [match details daemon](https://github.com/rithms/whos-that-champion/blob/master/FlaskApp/FlaskApp/daemon/match_details_d.py) was created to retrieve the match details of every matchId found in the database via the Riot Games API. Only the necessary match
+data needed for the web app was parsed from the data returned from the Riot Games API. The parsed data was then made into a match document, and stored in the
+matches collection in the database.
+
+A [static data script](https://github.com/rithms/whos-that-champion/blob/master/FlaskApp/FlaskApp/scripts/static_data.py) was created and run once. The script retrieved static data for champions, spells, and items via the Riot API. The json for the champion, spell, and
+item data was stored directly in the database as documents to their respective collections. Namely, the champions, items, and spells collections of the database.
+
+Now that URF is over, none of these scripts need to be run.
+
+### Data Model
+
+MatchId documents were stored in the MatchIds collection.
+
+An example of a matchId document's structure can be seen [here](http://whosthatchampion.com/example_matchId_document/).
+
+
+Match documents were stored in the Matches collection.
+
+An example of a match document's structure can be seen [here](http://whosthatchampion.com/example_match_document/).
+
+
+Champion documents were stored in the Champions collection. The structure for these documents comes straight from the Riot API.
+
+An example of a champion document's structure can be seen [here](http://whosthatchampion.com/example_champion_document/).
+
+
+Spell documents were stored in the Spells collection. The structure for these documents comes straight from the Riot API.
+
+An example of a spell document's structure can be seen [here](http://whosthatchampion.com/example_spell_document/).
+
+
+Item documents were stored in the Items collection. The structure for these documents comes straight from the Riot API.
+
+An example of a item document's structure can be seen [here](http://whosthatchampion.com/example_item_document/).
+
+
 ### Contributions
 This project is now open source now that the API Challenge is over.
 If you would like to contribute to this project please open an issue, or send a pull request.
