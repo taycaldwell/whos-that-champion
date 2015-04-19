@@ -20,10 +20,8 @@ item_url = 'https://global.api.pvp.net/api/lol/static-data/na/v1.2/item?itemList
 def getStaticData(url, type): 
 	r = requests.get(url)
 	if r.status_code == 429:
-	    print("Rate limit exceeded...Sleeping...")
 	    time.sleep(10)
 	elif r.status_code == 200:
-	    print("Success...")
 	    json = r.json()
 	    for name, data in json['data'].iteritems():
 	    	if type == "CHAMPION_DATA":

@@ -16,7 +16,7 @@ spells = db.spells
 items = db.items
 
 key = getApiKey()
-app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
+app.secret_key = 'SECRET-KEY-HERE'
 
 @app.route('/')
 def homepage():

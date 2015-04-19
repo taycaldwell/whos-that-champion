@@ -36,7 +36,6 @@ class App():
 			if r.status_code == 429:
 				# Should never hit rate limit as we sleep 1s
 				# after every request.
-				print("Rate Limit Exceeded...")
 				time.sleep(10)
 				return getMatchData(matchId)
 			elif r.status_code == 200:
@@ -128,15 +127,10 @@ class App():
 		running = True
 		while running:
 			for x in range(0, cursor.count()):
-				print("Retrieving details for match: " + str(cursor.__getitem__(x)['matchId']))
 				json = getMatchData(cursor.__getitem__(x)['matchId'])
 				part_dict = createParticipantDict(json, randint(1,10))
-				print("Assigning ID: " + str(matches.find().count() + 1))
 				part_dict['id'] =  matches.find().count() + 1
 				matches.insert(part_dict)
-				print("Match Count: " + str(matches.find().count()))
-			print("Completed")
-			print("Match Count: " + str(matches.find().count()))
 			running = False
 
 
