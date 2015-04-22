@@ -5,10 +5,10 @@
     transform: scale(1.1);
 }
 .content {
-	-webkit-transition: all .4s ease-in-out;
-	-moz-transition: all .4s ease-in-out;
-	-o-transition: all .4s ease-in-out;
-	-ms-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
 }
 
 #map svg {
@@ -44,4 +44,204 @@ table {
 
 .alert {
     height: 10%;
+}
+
+#urf-body {
+    background-size:cover
+}
+
+#logo {
+    width: 75%;
+}
+
+#logo-row {
+    padding-top:20px; 
+    font-size: 30px;
+}
+
+#streak-div {
+    padding-top: 10px;
+}
+
+.inline {
+    display: inline;
+}
+
+.section {
+    padding-bottom: 15px; 
+    border-right-width: 2px; 
+    border-left-width: 2px; 
+    border-style: solid; 
+    border-color:rgba(50, 50, 50, 1);
+}
+
+#blue-team-div {
+    background-color: rgba(0, 0, 225, .15); 
+    border-top-left-radius: 5px; 
+    border-top-right-radius: 5px; 
+    border-top-width: 2px; 
+    border-bottom-width: 1px;
+}
+
+#red-team-div {
+    background-color: rgba(225, 0, 0, .15);
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+.team-name {
+    margin-top:15px;
+    margin-bottom:20px;
+    font-size: 25px;
+}
+
+.team-img {
+    display: inline-block; 
+    width: 15px; 
+    margin-top: -5px;
+}
+
+.champ-select {
+    border-width: 1px; 
+    border-style: solid;
+    width:100px;
+}
+
+.player-blue {
+    border-color:rgba(0, 0, 225, .5);
+}
+
+.player-red {
+    border-color:rgba(225, 0, 0, .5);
+}
+
+#gray-div {
+    background-color: rgba(50, 50, 50, .2);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-top: 20px; 
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-style: solid;
+    padding-bottom: 0px;
+}
+
+#match-details {
+    padding-bottom:20px;
+}
+
+#match-history-item {
+    display: table-row;
+    border-radius: 10px;
+    height: 100px;
+}
+
+.mh-item-div {
+    display: table-cell;
+    vertical-align: middle;
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+}
+
+#winner {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 5px;
+}
+
+#champion-icon {
+    padding-left: 10px;
+}
+
+#champ-icon {
+    border-width: 3px;
+    border-style: solid;
+}
+
+.champ-icon-guess {
+    border-color: gray;
+}
+
+.top-row-img-div {
+    padding-bottom: 5px;
+}
+
+#description-div {
+    width: 300px;
+    padding: 0px 2px 2px 15px;
+    text-align:left;
+}
+
+.mh-text-lg {
+   font-size:25px;
+}
+
+.mh-text-md {
+    font-size:18px;
+}
+
+.mh-text-sm {
+    font-size:15px;
+}
+
+.text-norm {
+    color: black;
+}
+
+#kd-details-div {
+    width: 300px;
+    padding: 2px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.modal-body {
+    color: black;
+    text-align: left;
+}
+
+.modal-title {
+    color: black;
+}
+
+.red-highlight {
+    color: red;
+}
+
+.blue-highlight {
+    color: blue;
+}
+
+.pad-top-def {
+    padding-top: 15px;
+}
+
+.dont-display {
+    display: none;
+}
+
+.skill-table-header {
+    text-align: center;
+    background-color: #000000;
+}
+
+#q-row, #e-row {
+    background-color: #212121;
+}
+
+#w-row, #r-row {
+    background-color: #323232;
+}
+
+.title-td {
+    background-color: rgba(1,1,1,.87);
+}
+
+.footer-stuff {
+    color:gray;
+}
+
+.footer-stuff a {
+    text-decoration: none;
 }
