@@ -80,10 +80,6 @@ An example of a item document's structure can be seen [here](http://whosthatcham
 This project is now open source now that the API Challenge is over.
 If you would like to contribute to this project please open an issue, or send a pull request.
 
-### Developer Note
-The front end is a bit messy because I'm shit at front-end. I'm already working on it, so don't even waste your time 
-trying to fix it if you plan to make a contribution. :P
-
 ### Disclaimer
 "Who's That Champion?" isn’t endorsed by Riot Games and doesn’t reflect the views or opinions 
 of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends 
