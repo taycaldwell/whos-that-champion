@@ -2,8 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta content="utf-8" http-equiv="encoding">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
@@ -18,7 +19,9 @@
     <link href="{{ url_for('static', filename ='css/cover.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename ='css/rithms.css') }}" rel="stylesheet">
     
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename ='js/bootstrap.min.js') }}"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="{{ url_for('static', filename ='js/rithms.js') }}"></script>
     <script>
@@ -30,10 +33,10 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 
         <div class="container">
         		<div class="row" id="logo-row">
-        			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        			<div class="col-xs-6">
         				<a href="/"><img id="logo" src='{{ url_for('static', filename = 'images/logo.png' )}}'/></a>
         			</div>
-        			<div id="streak-div" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        			<div id="streak-div" class="col-xs-6">
         				<p class="inline">Streak: <span id="streak">{{session['streak']}}</span></p> <a class="twitter-share-button inline"
                 href="https://twitter.com/share"
                 data-count="none"
@@ -46,13 +49,13 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
         		</div>
         		<br>
                 <div class="row">
-	                <div id="blue-team-div" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 section">
-	                  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4 team-name">
+	                <div id="blue-team-div" class="col-xs-12 section">
+	                  <div class="col-xs-4 col-xs-offset-4 team-name">
 	                  	<img class="team-img" src='{{ url_for('static', filename = 'images/misc/scoreboardicon_gem_100.png' )}}'/> <p class="inline">Blue Team</p>
 	                  </div>
-	                  <div id="blue-team" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+	                  <div id="blue-team" class="col-xs-12 col-xs-offset-1">
 	                    {% for participantId, full in data['champion_full_data']['Team1'] %}
-	                    	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+	                    	<div class="col-xs-10 col-sm-2">
 	                    		<input onClick="changeChampIcon(this.src, {{participantId}}, 1)" type="image" src="{{ url_for('static', filename = 'images/champion/' + full)}}" class="champ-select img-rounded player-blue" id="{{participantId}}" value="{{participantId}}"/>
 	                    	</div>
 	                    {% endfor %}
@@ -60,13 +63,13 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 	              </div>
               </div>
                 <div class="row">
-	                <div id="red-team-div" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 section">
-	                  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4 team-name">
+	                <div id="red-team-div" class="col-xs-12 section">
+	                  <div class="col-xs-4 col-xs-offset-4 team-name">
 	                  	<img class="team-img" src='{{ url_for('static', filename = 'images/misc/scoreboardicon_gem_200.png' )}}'/> <p class="inline">Red Team</p>
 	                  </div>
-	                  <div id="red-team" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+	                  <div id="red-team" class="col-xs-12 col-xs-offset-1">
 	                    {% for participantId, full in data['champion_full_data']['Team2'] %}
-	                    	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+	                    	<div class="col-xs-10 col-sm-2">
 	                    		<input onClick="changeChampIcon(this.src, {{participantId}}, 2)" type="image" src="{{ url_for('static', filename = 'images/champion/' + full)}}" class="champ-select img-rounded player-red" id="{{participantId}}" value="{{participantId}}"/>
 	                    	</div>
 	                    {% endfor %}
@@ -75,9 +78,9 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
                 </div>
                 <input id="guess" type="hidden" size="5" name="a">
                 <div class="row">
-                	<div id="gray-div" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 section">
+                	<div id="gray-div" class="col-xs-12 section">
 		                <div id="match-details" class="row">
-			                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+			                <div class="col-xs-10 col-xs-offset-1">
 
 			                	<div id="match-history-item">
 
@@ -221,7 +224,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 			            <div id="correct-alert" class="alert alert-success dont-display" role="alert"><span class="sr-only">Close</span></button><strong>Correct!</strong> Click next to continue.</div>
 		                <div id="wrong-alert" class="alert alert-danger dont-display" role="alert"><span class="sr-only">Close</span></button><strong>Wrong! </strong><span id="incorrect-msg">Streak has ended.</span></div>
 			            <div class="row">
-			            	<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+			            	<div class="col-xs-10 col-xs-offset-1">
 				            	<table id="skill-table" class="table table-bordered">
 				            		<thead>
 				            			<tr>
@@ -296,7 +299,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
         	</div>
 
           <div class="row pad-top-def">
-            <div id="footer-stuff" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="footer-stuff" class="col-xs-12">
             	<p>| <a href="http://github.com/rithms">Source Code</a> | <a href="#faq-modal" data-toggle="modal">FAQ</a> | <a href="#instructions-modal" data-toggle="modal">How To Play</a> | </p>
             </div>
           </div>
@@ -361,9 +364,5 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
       </div>
     </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{ url_for('static', filename ='js/bootstrap.min.js') }}"></script>
   </body>
 </html>
