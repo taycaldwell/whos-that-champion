@@ -11,7 +11,7 @@
     <title>Who's That Champion?</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static', filename ='css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename ='css/bootstrap.min.css') }}" rel="stylesheet">
 
     <link href="{{ url_for('static', filename ='css/cover.css') }}" rel="stylesheet">
 
@@ -24,12 +24,10 @@
 
   </head>
 
-  <body style="background: url({{ url_for('static', filename ='images/whosthatchampion.png')}}) no-repeat center center fixed; background-size:cover">
+  <body style="background: url({{ url_for('static', filename ='images/whosthatchampion.png')}}) no-repeat center center fixed; background-size:cover"> 
 
     <div class="site-wrapper">
-
       <div class="site-wrapper-inner">
-
         <div class="cover-container">
         
           <div class="inner cover">
@@ -39,6 +37,7 @@
               <a href="urf/" class="btn btn-lg btn-default" style="background-color:red; color: white; -webkit-text-stroke: 2px black; width: 200px; height: 85px; font-size:50px;">PLAY</a>
             </p>
           </div>
+
           <div class="mastfoot">
             <div class="inner">
             </div>
@@ -53,7 +52,6 @@
             <p style="color:rgba(225,225,225,.8); font-size: 10px">"Who's That Champion?" isn’t endorsed by Riot Games and doesn’t reflect the views or opinions 
 of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends 
 and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</p>
-
           </div>
 
         </div>

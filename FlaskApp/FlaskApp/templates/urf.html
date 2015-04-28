@@ -13,7 +13,7 @@
     <title>Who's That Champion?</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static', filename ='css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename ='css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename ='css/cover.css') }}" rel="stylesheet">
@@ -22,7 +22,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="{{ url_for('static', filename ='js/bootstrap.min.js') }}"></script>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="{{ url_for('static', filename ='js/rithms.js') }}"></script>
     <script>
 window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
