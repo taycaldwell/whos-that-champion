@@ -24,6 +24,7 @@ def homepage():
 	session['streak'] = 0
 	session['participantId'] = 0
 	session['champion'] = ""
+	session['high_score'] = 0
 	return render_template("index.html", matchIdCount = str(matchIds.count()), matchCount = str(matches.count()))
 
 @app.route('/urf/')
@@ -63,12 +64,14 @@ def next_level():
 @app.route('/check_score/', methods=['POST'])
 def check_score():
 	sorted_scores = highscores.find().sort('score', -1)
-	return jsonify(result = session['streak'] > sorted_scores[9]['score'], streak=session['streak'], lowest_score=sorted_scores[9]['score'])
+	session['high_score'] = session['streak']
+	return jsonify(result = session['high_score'] > sorted_scores[9]['score'])
 
 @app.route('/submit_score/', methods=['POST'])
 def submit_score():
 	username = str(request.form['name'])
-	highscores.insert({'name': username, 'score': session['streak']})
+	highscores.insert({'name': username, 'score': session['high_score']})
+	session['highscore'] = 0
 	return jsonify(result = True)
 
 @app.errorhandler(404)

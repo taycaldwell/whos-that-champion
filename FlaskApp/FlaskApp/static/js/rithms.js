@@ -40,6 +40,7 @@ $(document).ready(function(){
 							type: 'POST',
 							success: function(response) {
 								if(response.result) {
+									resetStreakSS();
 									$('#input-highscore').fadeIn('slow');
 								} else {
 									$('#wrong-alert').fadeIn('slow');
@@ -83,7 +84,7 @@ function submitHighScore() {
         success: function(response) {
         	$('#wrong-alert').fadeIn('slow');
 			$('#restart-btn').fadeIn('slow');
-			resetStreak();
+			resetStreakCS();
         },
         error: function(error) {
             console.log(error);
@@ -274,7 +275,7 @@ function incrementStreak(){
 }
 
 /* Reset streak to 0 */
-function resetStreak(){
+function resetStreakSS(){
 	$.ajax({
             url: '/reset_streak/',
             data: {},
@@ -284,7 +285,17 @@ function resetStreak(){
                 console.log(error);
             }
         });
+}
+
+/* Reset streak to 0 */
+function resetStreakCS(){
 	$("#streak").text(0);
+}
+
+/* Reset streak to 0 */
+function resetStreak(){
+	resetStreakSS();
+	resetStreakCS;
 }
 
 /* 
