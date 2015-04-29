@@ -295,7 +295,7 @@ function resetStreakCS(){
 /* Reset streak to 0 */
 function resetStreak(){
 	resetStreakSS();
-	resetStreakCS;
+	resetStreakCS();
 }
 
 /* 
