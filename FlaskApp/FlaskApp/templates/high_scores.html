@@ -1,0 +1,30 @@
+{% extends "header.html" %}
+{% block body %}
+  <h1 >High Scores</h1>
+  <div class="col-xs-6 score-sub-header">
+  		<h2>Username</h2>
+  	</div>
+  	<div class="col-xs-6 score-sub-header">
+  		<h2>Score</h2>
+  	</div>
+  {% for entry in data %}
+  	<div style=" {% if loop.index == 1 %}
+  					text-shadow: 0 0 1px #ffe34d;
+  					color: #ccac00;
+  				 {% elif loop.index == 2 %}
+  				 	text-shadow: 0 0 1px #e6e6e6;
+  					color: #a7a7a7;
+  				 {% elif loop.index == 3 %}
+  				 	text-shadow: 0 0 1px #dca570;
+  					color: #a46628;
+  				{% endif %}
+  	">
+	  	<div class="col-xs-6">
+	  		<p class="lead">{{entry['name']}}</p>
+	  	</div>
+	  	<div class="col-xs-6">
+	  		<p class="lead">{{entry['score']}}</p>
+	  	</div>
+	</div>
+  {% endfor %}
+{% endblock %}
