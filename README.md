@@ -20,7 +20,7 @@ http://whosthatchampion.com
 Enjoy!
 
 ### Version
-1.0.0
+1.1.0
 
 ### Tech
 

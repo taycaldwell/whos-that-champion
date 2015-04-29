@@ -14,6 +14,7 @@ matches = db.matches
 champions = db.champions
 spells = db.spells
 items = db.items
+highscores = db.scores
 
 key = getApiKey()
 app.secret_key = 'SECRET-KEY-HERE'
@@ -30,6 +31,12 @@ def urf():
 	# Get random match, and assign participantId to session
 	data = get_match()
 	return render_template("urf.html", data = data)
+
+@app.route('/high_scores/')
+def high_scores():
+	# Get random match, and assign participantId to session
+	data = get_high_scores()
+	return render_template("high_scores.html", data = data)
 
 @app.route('/verify_answer/', methods=['POST'])
 def verify_answer():
@@ -52,6 +59,17 @@ def next_level():
 	# Similar to initial urf route
 	data = get_match()
 	return Response(json_util.dumps({'result' : data}), mimetype='application/json')
+
+@app.route('/check_score/', methods=['POST'])
+def check_score():
+	sorted_scores = highscores.find().sort('score', -1)
+	return jsonify(result = session['streak'] > sorted_scores[9]['score'], streak=session['streak'], lowest_score=sorted_scores[9]['score'])
+
+@app.route('/submit_score/', methods=['POST'])
+def submit_score():
+	username = str(request.form['name'])
+	highscores.insert({'name': username, 'score': session['streak']})
+	return jsonify(result = True)
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -92,6 +110,11 @@ def get_match():
 	session['champion'] = data['champion']['name']
 	session['full'] = data['champion']['full']
 	return data
+
+def get_high_scores():
+	data = highscores.find().sort('score', -1).limit(10)
+	return data
+
 
 if __name__ == "__main__":
     app.run()

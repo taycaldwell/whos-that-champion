@@ -245,3 +245,7 @@ table {
 .footer-stuff a {
     text-decoration: none;
 }
+
+.score-sub-header {
+    padding-bottom: 20px;
+}

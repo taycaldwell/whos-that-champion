@@ -19,7 +19,7 @@ $(document).ready(function(){
     $('input#final-answer-btn').bind('click', function() {
         $.ajax({
             url: '/verify_answer/',
-            data: {a: $('input[name="a"]').val()},
+            data: {a: $('#guess').val()},
             type: 'POST',
             success: function(response) {
                 $('.alert').fadeOut('slow');
@@ -35,12 +35,23 @@ $(document).ready(function(){
 							$(this).css("border-color", response.color);
 			    			$(this).fadeIn("fast");
 						});
-						$("#tweeter").attr("data-text", "I just went on a " + $("#streak").text() + " win streak playing &quot;WhosThatChampion?&quot;");
-						$("#tweeter").fadeIn("slow");
-						$('#wrong-alert').fadeIn('slow');
-						$('#restart-btn').fadeIn('slow');
-						resetStreak();
-					}
+						$.ajax({
+							url: '/check_score/',
+							type: 'POST',
+							success: function(response) {
+								if(response.result) {
+									$('#input-highscore').fadeIn('slow');
+								} else {
+									$('#wrong-alert').fadeIn('slow');
+									$('#restart-btn').fadeIn('slow');
+									resetStreak();
+								}
+							},
+							error: function(error) {
+								console.log(error);
+							}
+						});
+					} $('#guess').val(0);
 	        	});
             },
             error: function(error) {
@@ -57,7 +68,29 @@ $(document).ready(function(){
 	$('#next-btn').bind('click', restart);
 	$('#restart-btn').bind('click', restart);
 
+	/*
+	Submit High Score
+	*/
+	$('#submit-score').bind('click', submitHighScore);
 });
+
+function submitHighScore() {
+	$('#input-highscore').fadeOut('slow');
+	$.ajax({
+        url: '/submit_score/',
+        data: {name: $('#username-input').val()},
+        type: 'POST',
+        success: function(response) {
+        	$('#wrong-alert').fadeIn('slow');
+			$('#restart-btn').fadeIn('slow');
+			resetStreak();
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+    return false;
+}
 
 function restart() {
     $.ajax({
@@ -71,7 +104,7 @@ function restart() {
     			$('#final-answer-btn').fadeIn('slow');
     		});
 
-    		//renew data 
+    		// renew data 
 			$("#blue-team").find("div:visible").fadeOut("fast", function(){
 			    var $participant = $(this).find("input");
 			    $participant.attr("src", "/static/images/champion/" + response.result['champion_full_data']['Team1'][($participant.attr("id")-1)][1]);
@@ -193,22 +226,22 @@ function generateTableRow(skill_slot, level, response) {
 	var diff = 18 - level;
 	var id = ""
 	switch(skill_slot) {
-	case 1:
-		$("#q-row").append('<td style="background-color: rgba(1,1,1,.87)">Q</td>');
-		id = "#q-row"
-		break;
-	case 2:
-		$("#w-row").append('<td style="background-color: rgba(1,1,1,.87)">W</td>');
-		id = "#w-row"
-		break;
-	case 3:
-		$("#e-row").append('<td style="background-color: rgba(1,1,1,.87)">E</td>');
-		id = "#e-row"
-		break;
-	case 4:
-		$("#r-row").append('<td style="background-color: rgba(1,1,1,.87)">R</td>');
-		id = "#r-row"
-		break;
+		case 1:
+			$("#q-row").append('<td style="background-color: rgba(1,1,1,.87)">Q</td>');
+			id = "#q-row"
+			break;
+		case 2:
+			$("#w-row").append('<td style="background-color: rgba(1,1,1,.87)">W</td>');
+			id = "#w-row"
+			break;
+		case 3:
+			$("#e-row").append('<td style="background-color: rgba(1,1,1,.87)">E</td>');
+			id = "#e-row"
+			break;
+		case 4:
+			$("#r-row").append('<td style="background-color: rgba(1,1,1,.87)">R</td>');
+			id = "#r-row"
+			break;
 	}
 	for(i = 0; i < level; i++) {
 		if(response.result['event_data']['skill_level_up'][i] == skill_slot) {
