@@ -196,7 +196,7 @@ function restart() {
 			});
 
 			$("#map").remove();
-			$(".modal-header").after('<div id ="map" class="modal-body" style="text-align: center">');
+			$("#map-modal-header").after('<div id ="map" class="modal-body" style="text-align: center">');
 			loadMap(response.result['event_data']['champ_kills']);
 
 
@@ -228,19 +228,19 @@ function generateTableRow(skill_slot, level, response) {
 	var id = ""
 	switch(skill_slot) {
 		case 1:
-			$("#q-row").append('<td style="background-color: rgba(1,1,1,.87)">Q</td>');
+			$("#q-row").append('<td class="title-td">Q</td>');
 			id = "#q-row"
 			break;
 		case 2:
-			$("#w-row").append('<td style="background-color: rgba(1,1,1,.87)">W</td>');
+			$("#w-row").append('<td class="title-td">W</td>');
 			id = "#w-row"
 			break;
 		case 3:
-			$("#e-row").append('<td style="background-color: rgba(1,1,1,.87)">E</td>');
+			$("#e-row").append('<td class="title-td">E</td>');
 			id = "#e-row"
 			break;
 		case 4:
-			$("#r-row").append('<td style="background-color: rgba(1,1,1,.87)">R</td>');
+			$("#r-row").append('<td class="title-td">R</td>');
 			id = "#r-row"
 			break;
 	}
