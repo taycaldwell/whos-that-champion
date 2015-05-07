@@ -13,7 +13,7 @@
     <title>Who's That Champion?</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static', filename ='css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename ='css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename ='css/cover.css') }}" rel="stylesheet">
@@ -37,7 +37,8 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
         				<a href="/"><img id="logo" src='{{ url_for('static', filename = 'images/logo.png' )}}'/></a>
         			</div>
         			<div id="streak-div" class="col-xs-6">
-        				<p class="inline">Streak: <span id="streak">{{session['streak']}}</span></p> <a class="twitter-share-button inline"
+        				<p class="streak-p inline">Streak: <span id="streak">{{session['streak']}}</span></p> 
+        				<a class="twitter-share-button inline"
                 href="https://twitter.com/share"
                 data-count="none"
                 data-url="http://whosthatchampion.com"
@@ -104,12 +105,12 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 				                	<div class="grad mh-item-div">
 				                		<div class="top-row-img-div">
 				                			<div>
-				                				<img id="spell1" src="{{url_for('static', filename = 'images/spell/' + data['spell1']['full'])}}" class="img-rounded"/>
+				                				<img id="spell1" src="{{url_for('static', filename = 'images/spell/' + data['spell1']['full'])}}" class="img-rounded mh-img"/>
 				                			</div>
 				                		</div>
 				                		<div>
 				                			<div>
-				                				<img id="spell2" src="{{url_for('static', filename = 'images/spell/' + data['spell2']['full'])}}" class="img-rounded"/>
+				                				<img id="spell2" src="{{url_for('static', filename = 'images/spell/' + data['spell2']['full'])}}" class="img-rounded mh-img"/>
 				                			</div>
 				                		</div>
 				                	</div>
@@ -137,12 +138,12 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 				                	<div class="grad mh-item-div">
 				                		<div class="top-row-img-div">
 				                			<div>
-				                				<img id="item0" src="{{url_for('static', filename = 'images/item/' + data['item0']['full'])}}" class="img-rounded"/>
+				                				<img id="item0" src="{{url_for('static', filename = 'images/item/' + data['item0']['full'])}}" class="img-rounded mh-img"/>
 				                			</div>
 				                		</div>
 				                		<div>
 				                			<div>
-				                				<img id="item3" src="{{url_for('static', filename = 'images/item/' + data['item3']['full'])}}" class="img-rounded"/>
+				                				<img id="item3" src="{{url_for('static', filename = 'images/item/' + data['item3']['full'])}}" class="img-rounded mh-img"/>
 				                			</div>
 				                		</div>
 				                	</div>
@@ -150,12 +151,12 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 				                	<div class="grad mh-item-div">
 				                		<div class="top-row-img-div">
 				                			<div>
-				                				<img id="item1" src="{{url_for('static', filename = 'images/item/' + data['item1']['full'])}}" class="img-rounded"/>
+				                				<img id="item1" src="{{url_for('static', filename = 'images/item/' + data['item1']['full'])}}" class="img-rounded mh-img"/>
 				                			</div>
 				                		</div>
 				                		<div>
 				                			<div>
-				                				<img id="item4" src="{{url_for('static', filename = 'images/item/' + data['item4']['full'])}}" class="img-rounded"/>
+				                				<img id="item4" src="{{url_for('static', filename = 'images/item/' + data['item4']['full'])}}" class="img-rounded mh-img"/>
 				                			</div>
 				                		</div>
 				                	</div>
@@ -163,19 +164,19 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 				                	<div class="grad mh-item-div">
 				                		<div class="top-row-img-div">
 				                			<div>
-				                				<img id="item2" src="{{url_for('static', filename = 'images/item/' + data['item2']['full'])}}" class="img-rounded"/>
+				                				<img id="item2" src="{{url_for('static', filename = 'images/item/' + data['item2']['full'])}}" class="img-rounded mh-img"/>
 				                			</div>
 				                		</div>
 				                		<div>
 				                			<div>
-				                				<img id="item5" src="{{url_for('static', filename = 'images/item/' + data['item5']['full'])}}" class="img-rounded"/>
+				                				<img id="item5" src="{{url_for('static', filename = 'images/item/' + data['item5']['full'])}}" class="img-rounded mh-img"/>
 				                			</div>
 				                		</div>
 				                	</div>
 
 
 				                	<div class="grad mh-item-div">
-				                		<img id="item6" src="{{url_for('static', filename = 'images/item/' + data['item6']['full'])}}" class="img-rounded"/>
+				                		<img id="item6" src="{{url_for('static', filename = 'images/item/' + data['item6']['full'])}}" class="img-rounded mh-img"/>
 				                	</div>
 
 
@@ -191,9 +192,9 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 							                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							                  <div class="modal-dialog">
 							                    <div class="modal-content">
-							                      <div class="modal-header">
+							                      <div class="modal-header" id="map-modal-header">
 							                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							                        <h4 class="modal-title" id="myModalLabel" style="color:black">Champion Kill Event Map</h4>
+							                        <h4 class="modal-title" id="myModalLabel">Champion Kill Event Map</h4>
 							                      </div>
 							                      <div id ="map" class="modal-body" style="text-align: center">
 							                        <script>loadMap({{data['event_data']['champ_kills']}})</script>
@@ -214,9 +215,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 				                			<form class="form" action="" method="post" role="form">
 				                				<div id="input-highscore" class="input-group input-group-sm dont-display">
 											      <input id="username-input" type="text" class="form-control" placeholder="Username">
-											      <span class="input-group-btn input-group-xs">
 											        <input id="submit-score" type="submit" class="btn btn-primary btn-xs" value="Submit Highscore">
-											      </span>
 											    </div>
 				            					<input id="final-answer-btn" type="submit" class="btn btn-primary final-answer" value="Final Answer">
 				            					<input id="next-btn" type="submit" class="btn btn-primary next dont-display" value="Next">
@@ -241,7 +240,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 				            			</tr>
 				            		</thead>
 				            		<tbody>
-				            		<!-- Probably should have structured this data better, owell, generating table by rows ftw #yolo -->
+				            		<!-- Probably should have structured this data better, owell -->
 				            			<tr id="q-row">
 				            				{% set diff = 18 -  data['event_data']['skill_level_up']|length %}
 				            				<td class="title-td">Q</td>
@@ -319,7 +318,7 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 		        <h4 class="modal-title">How To Play</h4>
 		      </div>
 		      <div class="modal-body">
-		      	<h3>Details:</h3>
+		      	<h4>Details:</h4>
 
 		      	<p>1.) Guess which champion the match details belong to.</p>
 
@@ -347,14 +346,15 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 		        <h4 class="modal-title">F.A.Q.</h4>
 		      </div>
 		      <div class="modal-body">
-		      	<h3 xlass="text-norm">What is this?</h3> 
+		      	<h4>What is this?</h4> 
 		      	<p><span class="red-highlight">WhosThatChampion.com</span> is a web app created by <a class="blue-highlight" href="http://twitter.com/itsRithms">Rithms</a> as a submission for the first Riot Games API Challenge. The goal of the challenge was to create a piece of software that utilizes Ultra Rapid Fire (U.R.F.) game mode data provided by the <a class="blue-highlight" href="https://developer.riotgames.com">Riot Games API</a>.</p>
-
-		      	<h3 class="text-norm">About</h3>
+		      	<br>
+		      	<h4>About</h4>
 		      	<p><span class="red-highlight">WhosThatChampion.com</span> was inspired by the popular animated TV series Pokemon, more specifically the commercial segment "Who's that Pokemon?", in which a silhouette of a pokemon is shown, and viewers have to guess which Pokemon it is during the commercial break. 
 		      	</p>
 		      	<p>Although the initial idea for the web app wasn't originally based off Pokemon, it popped into my head while working on the project, I saw an opportunity to integrate the two, and I just went with it.</p>
-		      	<h3 class="text-norm">Details</h3>
+		      	<br>
+		      	<h4>Details</h4>
 		      	<p>
 		      	For those interested, details about the full stack used to create this project and more can be found on my <a class="blue-highlight" href="http://github.com/rithms">GitHub.</a>
 		      	</p>
