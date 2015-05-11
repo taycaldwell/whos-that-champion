@@ -2,10 +2,10 @@ $(document).ready(function(){
 
 	/* Bootstrap tooltip */
 	$('[data-toggle="tooltip"]').tooltip();
-
+	
 	/* Champion hover transition */
 	$('.champ-select').hover(function() {
-   		$(this).addClass('transition');
+	   	$(this).addClass('transition');
     
     }, function() {
         $(this).removeClass('transition');
