@@ -1,21 +1,21 @@
 $(document).ready(function(){
 
-	/* Bootstrap tooltip */
-	$('[data-toggle="tooltip"]').tooltip();
-
-	/* Champion hover transition */
-	$('.champ-select').hover(function() {
-   		$(this).addClass('transition');
+    /* Bootstrap tooltip */
+    $('[data-toggle="tooltip"]').tooltip();
+	
+    /* Champion hover transition */
+    $('.champ-select').hover(function() {
+    	$(this).addClass('transition');
     
     }, function() {
         $(this).removeClass('transition');
     });
 
-	/* Bind actions to buttons */
+    /* Bind actions to buttons */
     $('#next-btn').bind('click', restart);
     $('#restart-btn').bind('click', restart);
     $('input#final-answer-btn').bind('click', verifyAnswer);
-	$('#submit-score').bind('click', submitHighScore);
+    $('#submit-score').bind('click', submitHighScore);
 });
 
 /* Restart level by retreiving new data from server, and renewing client side */
@@ -46,10 +46,10 @@ function restart() {
 
 /* Reveal the correct champion */
 function revealChampion(response) {
-	$('#champ-icon').fadeOut('fast', function() {
-    	$(this).attr("src", "/static/images/champion/" + response.champion_full);
-		$(this).css("border-color", response.color);
-		$(this).fadeIn("fast");
+    $('#champ-icon').fadeOut('fast', function() {
+        $(this).attr("src", "/static/images/champion/" + response.champion_full);
+        $(this).css("border-color", response.color);
+        $(this).fadeIn("fast");
     });
 }
 
@@ -136,7 +136,7 @@ function restartBtnTransition() {
 
 /* Reset champion icon to unknown champion */
 function resetChampIcon() {
-    $("#champ-icon").fadeOut("fast", function(){
+    $("#champ-icon").fadeOut("fast", function() {
         $(this).attr("src", "/static/images/champion/Random.png");
         $(this).css("border-color", "gray");
         $(this).fadeIn("fast");
