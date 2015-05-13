@@ -229,7 +229,7 @@ function renewCS(data) {
 /* Update champion kill map with new data */
 function renewMap(data) {
     $("#map").remove();
-    $(".modal-header").after('<div id ="map" class="modal-body" style="text-align: center">');
+    $("#map-modal-header").after('<div id ="map" class="modal-body" style="text-align: center"></div>');
     loadMap(data.event_data.champ_kills);
 }
 
