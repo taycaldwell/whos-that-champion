@@ -17,7 +17,7 @@ items = db.items
 highscores = db.scores
 
 key = getApiKey()
-app.secret_key = 'SECRET-KEY-HERE'
+app.secret_key = 'qwertyuiopasdfghjklzxcvbnm'
 
 @app.route('/')
 def homepage():
@@ -59,7 +59,27 @@ def reset_streak():
 def next_level():
 	# Similar to initial urf route
 	data = get_match()
-	return Response(json_util.dumps({'result' : data}), mimetype='application/json')
+	data_dict = {}
+	data_dict['champion_full_data'] = data['champion_full_data']
+	data_dict['winner'] = data['stats']['winner']
+	data_dict['kills'] = data['stats']['kills']
+	data_dict['deaths'] = data['stats']['deaths']
+	data_dict['assists'] = data['stats']['assists']
+	data_dict['spell1'] = data['spell1']
+	data_dict['spell2'] = data['spell2']
+	data_dict['item0'] = data['item0']
+	data_dict['item1'] = data['item1']
+	data_dict['item2'] = data['item2']
+	data_dict['item3'] = data['item3']
+	data_dict['item4'] = data['item4']
+	data_dict['item5'] = data['item5']
+	data_dict['item6'] = data['item6']
+	data_dict['formatted_gold'] = data['formatted_gold']
+	data_dict['minionsKilled'] = data['stats']['minionsKilled']
+	data_dict['neutralMinionsKilled'] = data['stats']['neutralMinionsKilled']
+	data_dict['event_data'] = data['event_data']
+
+	return Response(json_util.dumps({'result' : data_dict}), mimetype='application/json')
 
 @app.route('/check_score/', methods=['POST'])
 def check_score():
@@ -70,6 +90,9 @@ def check_score():
 @app.route('/submit_score/', methods=['POST'])
 def submit_score():
 	username = str(request.form['name'])
+	name_check = "".join(str(request.form['name']).split())
+	if name_check == "":
+		username = "Unknown"
 	highscores.insert({'name': username, 'score': session['high_score']})
 	session['highscore'] = 0
 	return jsonify(result = True)

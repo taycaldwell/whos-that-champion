@@ -2,10 +2,10 @@ $(document).ready(function(){
 
     /* Bootstrap tooltip */
     $('[data-toggle="tooltip"]').tooltip();
-	
+
     /* Champion hover transition */
     $('.champ-select').hover(function() {
-    	$(this).addClass('transition');
+        $(this).addClass('transition');
     
     }, function() {
         $(this).removeClass('transition');
@@ -104,22 +104,22 @@ function submitHighScore() {
 
 /* Check to see if streak is a high score */
 function checkScore() {
-	$.ajax({
-		url: '/check_score/',
-		type: 'POST',
-		success: function(response) {
-			if(response.result) {
-				resetStreakSS();
-				$('#input-highscore').fadeIn('slow');
-			} else {
-				wrongAlert();
-				resetStreak();
-			}
-		},
-		error: function(error) {
-			console.log(error);
-		}
-	});
+    $.ajax({
+        url: '/check_score/',
+        type: 'POST',
+        success: function(response) {
+            if(response.result) {
+                resetStreakSS();
+                $('#input-highscore').fadeIn('slow');
+            } else {
+                wrongAlert();
+                resetStreak();
+            }
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
 }
 
 /* 
@@ -136,7 +136,7 @@ function restartBtnTransition() {
 
 /* Reset champion icon to unknown champion */
 function resetChampIcon() {
-    $("#champ-icon").fadeOut("fast", function() {
+    $("#champ-icon").fadeOut("fast", function(){
         $(this).attr("src", "/static/images/champion/Random.png");
         $(this).css("border-color", "gray");
         $(this).fadeIn("fast");
@@ -156,7 +156,7 @@ function renewTeam(team, data) {
 }
 
 function updateTeamImages(id, team, offset, data) {
-	$(id).find("div:visible").fadeOut("fast", function(){
+    $(id).find("div:visible").fadeOut("fast", function(){
         var $participant = $(this).find("input");
         $participant.attr("src", "/static/images/champion/" + data.champion_full_data[team][$participant.attr("id") - offset][1]);
         $(this).fadeIn("fast");
@@ -205,7 +205,7 @@ function renewSpells(data) {
 /* Update kills, deaths, and assists with new data */
 function renewKD(data) {
     $("#kd").fadeOut("fast", function(){
-        $(this).text(data.stats.kills + "/" + data.stats.deaths + "/" + data.stats.assists);
+        $(this).text(data.kills + "/" + data.deaths + "/" + data.assists);
         $(this).fadeIn("fast");
     });
 }
@@ -221,7 +221,7 @@ function renewGold(data) {
 /* Update creep score with new data */
 function renewCS(data) {
     $("#creep-score").fadeOut("fast", function(){
-        $(this).text(data.stats.minionsKilled + data.stats.neutralMinionsKilled);
+        $(this).text(data.minionsKilled + data.neutralMinionsKilled);
         $(this).fadeIn("fast");
     });
 }
@@ -235,7 +235,7 @@ function renewMap(data) {
 
 /* Update win condition with new data */
 function renewWinCondition(data) {
-    if(data.stats.winner) {
+    if(data.winner) {
         $("#winner").css("background-color", "green");
         $("#win-cond").css("color", "green");
         $("#win-cond").text("Victory");
@@ -264,70 +264,70 @@ function renewSkillTable(data) {
 
 /* Generates the table row for a skill slot given the skill data and the players level*/
 function generateTableRow(skill_slot, level, data) {
-	var diff = 18 - level;
-	var id = "";
-	switch(skill_slot) {
-		case 1:
-			$("#q-row").append('<td class="title-td">Q</td>');
-			id = "#q-row";
-			break;
-		case 2:
-			$("#w-row").append('<td class="title-td">W</td>');
-			id = "#w-row";
-			break;
-		case 3:
-			$("#e-row").append('<td class="title-td">E</td>');
-			id = "#e-row";
-			break;
-		case 4:
-			$("#r-row").append('<td class="title-td">R</td>');
-			id = "#r-row";
-			break;
-	}
-	for(var i = 0; i < level; i++) {
-		if(data.event_data.skill_level_up[i] == skill_slot) {
-			$(id).append('<td><img src="/static/images/misc/circle.png" class="img-rounded"/></td>');
-		} else {
-			$(id).append('<td></td>');
-		}
-	}
-	for(var j = 0; j < diff; j++) {
-		$(id).append('<td></td>');
-	}
+    var diff = 18 - level;
+    var id = "";
+    switch(skill_slot) {
+        case 1:
+            $("#q-row").append('<td class="title-td">Q</td>');
+            id = "#q-row";
+            break;
+        case 2:
+            $("#w-row").append('<td class="title-td">W</td>');
+            id = "#w-row";
+            break;
+        case 3:
+            $("#e-row").append('<td class="title-td">E</td>');
+            id = "#e-row";
+            break;
+        case 4:
+            $("#r-row").append('<td class="title-td">R</td>');
+            id = "#r-row";
+            break;
+    }
+    for(var i = 0; i < level; i++) {
+        if(data.event_data.skill_level_up[i] == skill_slot) {
+            $(id).append('<td><img src="/static/images/misc/circle.png" class="img-rounded"/></td>');
+        } else {
+            $(id).append('<td></td>');
+        }
+    }
+    for(var j = 0; j < diff; j++) {
+        $(id).append('<td></td>');
+    }
 }
 
 /* Change the match details champion icon to the champion clicked/selected */
 function changeChampIcon(source, id, team){
-	$("#champ-icon").attr("src", source);
-	$('input[name="a"]').val(id);
-	if(team == 1){
-		$("#champ-icon").css("border-color", "blue");
-	} else {
-		$("#champ-icon").css("border-color", "red");
-	}
+    $("#champ-icon").attr("src", source);
+    $('input[name="a"]').val(id);
+    if(team == 1){
+        $("#champ-icon").css("border-color", "blue");
+    } else {
+        $("#champ-icon").css("border-color", "red");
+    }
 }
 
 /* Present alert for wrong answer and restart button */
 function wrongAlert() {
-	$('#wrong-alert').fadeIn('slow');
-	$('#restart-btn').fadeIn('slow');
+    $('#wrong-alert').fadeIn('slow');
+    $('#restart-btn').fadeIn('slow');
 }
 
 /* Present alert for correct answer and next level button */
 function correctAlert() {
-	$('#correct-alert').fadeIn('slow');
-	$('#next-btn').fadeIn('slow');
+    $('#correct-alert').fadeIn('slow');
+    $('#next-btn').fadeIn('slow');
 }
 
 /* Increment the streak (Client side) */
 function incrementStreak(){
-	var streak = parseInt($("#streak").text());
-	$("#streak").text((++streak));
+    var streak = parseInt($("#streak").text());
+    $("#streak").text((++streak));
 }
 
 /* Reset streak to 0 (Server-side) */
 function resetStreakSS(){
-	$.ajax({
+    $.ajax({
         url: '/reset_streak/',
         data: {},
         type: 'POST',
@@ -340,13 +340,13 @@ function resetStreakSS(){
 
 /* Reset streak to 0 (Client-side) */
 function resetStreakCS(){
-	$("#streak").text(0);
+    $("#streak").text(0);
 }
 
 /* Reset streak to 0 */
 function resetStreak(){
-	resetStreakSS();
-	resetStreakCS();
+    resetStreakSS();
+    resetStreakCS();
 }
 
 /* Reset the players guess */
@@ -360,7 +360,7 @@ https://developer.riotgames.com/docs/game-constants
 http://jsfiddle.net/utwvqsrg/
 */
 function loadMap(coords){
-	var cords = coords,
+    var cords = coords,
 
     // Domain for the current Summoner's Rift on the in-game mini-map
     domain = {
@@ -372,35 +372,35 @@ function loadMap(coords){
     bg = "https://s3-us-west-1.amazonaws.com/riot-api/img/minimap-ig.png",
     xScale, yScale, svg;
 
-	color = d3.scale.linear()
-	    .domain([0, 3])
-	    .range(["white", "steelblue"])
-	    .interpolate(d3.interpolateLab);
+    color = d3.scale.linear()
+        .domain([0, 3])
+        .range(["white", "steelblue"])
+        .interpolate(d3.interpolateLab);
 
-	xScale = d3.scale.linear()
-	  .domain([domain.min.x, domain.max.x])
-	  .range([0, width]);
+    xScale = d3.scale.linear()
+      .domain([domain.min.x, domain.max.x])
+      .range([0, width]);
 
-	yScale = d3.scale.linear()
-	  .domain([domain.min.y, domain.max.y])
-	  .range([height, 0]);
+    yScale = d3.scale.linear()
+      .domain([domain.min.y, domain.max.y])
+      .range([height, 0]);
 
-	svg = d3.select("#map").append("svg:svg")
-	    .attr("width", width)
-	    .attr("height", height);
+    svg = d3.select("#map").append("svg:svg")
+        .attr("width", width)
+        .attr("height", height);
 
-	svg.append('image')
-	    .attr('xlink:href', bg)
-	    .attr('x', '0')
-	    .attr('y', '0')
-	    .attr('width', width)
-	    .attr('height', height);
+    svg.append('image')
+        .attr('xlink:href', bg)
+        .attr('x', '0')
+        .attr('y', '0')
+        .attr('width', width)
+        .attr('height', height);
 
-	svg.append('svg:g').selectAll("circle")
-	    .data(cords)
-	    .enter().append("svg:circle")
-	        .attr('cx', function(d) { return xScale(d[0]); })
-	        .attr('cy', function(d) { return yScale(d[1]); })
-	        .attr('r', 5)
-	        .attr('class', 'kills');
+    svg.append('svg:g').selectAll("circle")
+        .data(cords)
+        .enter().append("svg:circle")
+            .attr('cx', function(d) { return xScale(d[0]); })
+            .attr('cy', function(d) { return yScale(d[1]); })
+            .attr('r', 5)
+            .attr('class', 'kills');
 }
