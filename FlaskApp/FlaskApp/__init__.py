@@ -17,7 +17,7 @@ items = db.items
 highscores = db.scores
 
 key = getApiKey()
-app.secret_key = 'qwertyuiopasdfghjklzxcvbnm'
+app.secret_key = 'SECRET-KEY-HERE'
 
 @app.route('/')
 def homepage():
