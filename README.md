@@ -1,13 +1,14 @@
 # Who's That Champion? - URF Version
 
 'Who's That Champion? - URF Version' is an interactive game and web application designed for the first Riot Games API Challenge.
+The app was chosen as a winning submission placing as a runner-up.
 
 The rules are simple:
   - Analyze the match details that are given to you.
   - Guess which champion the data is from (based soley on analysis, problem solving, and guesstimations).
   - See how many you can get right in a row, and brag to your friends!
 
-  It may sound like a cake walk, but you'd be surprised how challenging it can be with a URF game mode's meta.
+It may sound like a cake walk, but you'd be surprised how challenging it can be with a URF game mode's meta.
  
 We have collected data from over 85,000 URF mode games, so you're sure to get a unique match every time you play.
 
