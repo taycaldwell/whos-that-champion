@@ -12,8 +12,6 @@ It may sound like a cake walk, but you'd be surprised how challenging it can be 
  
 We have collected data from over 85,000 URF mode games, so you're sure to get a unique match every time you play.
 
-PS: URF Version is the first version of "Who's That Champion?". No other versions exist. Sorry?
-
 ### Demo
 The web app can be found here:
 http://whosthatchampion.com
@@ -27,7 +25,7 @@ Enjoy!
 
 "Who's That Champion?" was developed with the following tech stack:
 
-* [Digital Ocean](https://www.digitalocean.com/) - SSD Cloud Server/Hosting
+* [Digital Ocean](https://www.digitalocean.com/?refcode=487c619b6f74) - SSD Cloud Server/Hosting
 * [MongoDB/PyMongo](https://api.mongodb.org/python/current/) - Open-source document/NoSQL database 
 * [Flask](http://flask.pocoo.org/) - Microframework for Python (Werkzeug, Jinja2)
 * [Twitter Bootstrap](http://getbootstrap.com/) - Front-end framework for modern web apps
