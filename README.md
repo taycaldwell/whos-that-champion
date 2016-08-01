@@ -13,8 +13,7 @@ It may sound like a cake walk, but you'd be surprised how challenging it can be 
 We have collected data from over 85,000 URF mode games, so you're sure to get a unique match every time you play.
 
 ### Demo
-The web app can be found here:
-http://whosthatchampion.com
+A demo for this project is no longer available.
 
 Enjoy!
 
