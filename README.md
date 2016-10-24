@@ -47,33 +47,6 @@ The necessary data for the web app was parsed and made into a document, which wa
 
 Now that URF is over, none of these scripts need to be run, as all data is up to date in relation to the stored matches.
 
-### Data Model
-
-MatchId documents were stored in the MatchIds collection.
-
-An example of a matchId document's structure can be seen [here](http://whosthatchampion.com/example_matchId_document/).
-
-
-Match documents were stored in the Matches collection.
-
-An example of a match document's structure can be seen [here](http://whosthatchampion.com/example_match_document/).
-
-
-Champion documents were stored in the Champions collection.
-
-An example of a champion document's structure can be seen [here](http://whosthatchampion.com/example_champion_document/).
-
-
-Spell documents were stored in the Spells collection.
-
-An example of a spell document's structure can be seen [here](http://whosthatchampion.com/example_spell_document/).
-
-
-Item documents were stored in the Items collection.
-
-An example of a item document's structure can be seen [here](http://whosthatchampion.com/example_item_document/).
-
-
 ### Contributions
 This project is now open source now that the API Challenge is over.
 If you would like to contribute to this project please open an issue, or send a pull request.
