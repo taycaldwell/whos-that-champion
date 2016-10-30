@@ -13,8 +13,6 @@ We have collected data from over 85,000 URF mode games, so you're sure to get a 
 ### Demo
 A demo for this project is no longer available.
 
-Enjoy!
-
 ### Version
 1.1.1
 
